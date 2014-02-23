@@ -2,6 +2,7 @@ module Browsers (openUrl) where
 
 import           System.Process                  (system)
 import           System.Directory                (getHomeDirectory)
+import 			 Control.Monad 					 (void)
 
 openUrl :: String -> IO ()
 openUrl url = do
@@ -9,7 +10,7 @@ openUrl url = do
 	startProcess chromePath url
 
 startProcess :: FilePath -> String -> IO ()
-startProcess path param = system (path ++ " \"" ++ param ++ "\"")
+startProcess path param = void $ system (path ++ " \"" ++ param ++ "\"")
 
 
 getChromePath :: IO FilePath
